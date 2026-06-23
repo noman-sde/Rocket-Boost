@@ -35,11 +35,24 @@ public class Movement : MonoBehaviour
     }
   }
   private void ProcessRotation()
+  {
+    float rotationInput = rotation.ReadValue<float>();
+    // if (rotationInput != 0)
+    // {
+    //     rb.AddRelativeTorque(Vector3.back * rotationInput * rotationStrength * Time.fixedDeltaTime);
+    // }
+
+    if (rotationInput < 0)
     {
-        float rotationInput = rotation.ReadValue<float>();
-        if (rotationInput != 0)
-        {
-            rb.AddRelativeTorque(Vector3.back * rotationInput * rotationStrength * Time.fixedDeltaTime);
-        }
+      ApplyRotation(rotationStrength);
     }
+    else if (rotationInput > 0)
+    {
+      ApplyRotation(-rotationStrength);
+    }
+  }
+  private void ApplyRotation(float rotationThisFrame)
+  {
+    transform.Rotate(Vector3.forward * rotationThisFrame * Time.fixedDeltaTime);
+  }
 }
