@@ -1,15 +1,47 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+
 
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] float levelLoadDelay = 2f;
     [SerializeField] AudioClip crashSound;
     [SerializeField] AudioClip finishSound;
+    [SerializeField] ParticleSystem crashParticles;
+    [SerializeField] ParticleSystem successParticles;
     AudioSource audioSource;
+
+    bool isControllable = true;
+    bool isCollidable = true;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        respondToDebugKeys();
+
+    }
+
+    private void respondToDebugKeys()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            LoadNextLevel();
+        }
+        else if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            isCollidable = !isCollidable; // toggle collision
+        }
+    }
+
     void OnCollisionEnter(Collision other)
     {
+        if (!isControllable || !isCollidable) { return;}
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -29,22 +61,23 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
     private void StartCrashSequence()
     {
-        GetComponent<Movement>().enabled = false;
+        isControllable = false;
+        audioSource.Stop();
         audioSource.PlayOneShot(crashSound);
+        crashParticles.Play();
+        GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
 
     }
     private void StartFinishSequence()
     {
-        GetComponent<Movement>().enabled = false;
+        isControllable = false;     
+        audioSource.Stop();
         audioSource.PlayOneShot(finishSound);
+        successParticles.Play();
+        GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
     }
 
