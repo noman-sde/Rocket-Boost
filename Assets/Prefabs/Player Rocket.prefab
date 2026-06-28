@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 987449944699445776}
   - component: {fileID: 8313802044543726641}
   - component: {fileID: 1291007116740558510}
+  - component: {fileID: 1297538652199983511}
   m_Layer: 0
   m_Name: Player Rocket
   m_TagString: Player
@@ -81,7 +82,7 @@ MonoBehaviour:
       m_Action: Thrust
       m_Flags: 0
     m_Flags: 0
-  thurstStrength: 85
+  thurstStrength: 100
   rotation:
     m_Name: Rotation
     m_Type: 0
@@ -115,7 +116,7 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 8
     m_Flags: 0
-  rotationStrength: 85
+  rotationStrength: 100
   mainEngine: {fileID: 8300000, guid: b3eb3a8cdf66e6b40b92f545442b0100, type: 3}
   mainEngineParticles: {fileID: 5238358997656986091}
   leftThrusterParticles: {fileID: 7211360868163822352}
@@ -282,6 +283,18 @@ MonoBehaviour:
   finishSound: {fileID: 8300000, guid: 0af281e3839ea7a4d9d182699050c43f, type: 3}
   crashParticles: {fileID: 6483509290424373476}
   successParticles: {fileID: 4476381548631432606}
+--- !u!114 &1297538652199983511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903392708747969679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d478a7a28766342a2d17926a8dac1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuitApplication
 --- !u!1 &5570839227111150175
 GameObject:
   m_ObjectHideFlags: 0
