@@ -23,21 +23,21 @@ public class CollisionHandler : MonoBehaviour
 
     void Update()
     {
-        respondToDebugKeys();
+        // respondToDebugKeys();
 
     }
 
-    private void respondToDebugKeys()
-    {
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-        {
-            LoadNextLevel();
-        }
-        else if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            isCollidable = !isCollidable; // toggle collision
-        }
-    }
+    // private void respondToDebugKeys()
+    // {
+    //     if (Keyboard.current.lKey.wasPressedThisFrame)
+    //     {
+    //         LoadNextLevel();
+    //     }
+    //     else if (Keyboard.current.cKey.wasPressedThisFrame)
+    //     {
+    //         isCollidable = !isCollidable; // toggle collision
+    //     }
+    // }
 
     void OnCollisionEnter(Collision other)
     {
